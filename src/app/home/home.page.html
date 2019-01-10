@@ -1,12 +1,61 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>
       Ionic Blank
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-content padding color="danger">
+  <div class="content">
+    <h1>Flames</h1>
+    <div class="content-box" *ngIf="!isFormOpened && !isResultOpened">
+      Do you still remember back then in Secondary School (junior secondary school for some and Senior for others) ? A
+      game we played to use style to know how we and our crush clicked. Yeah I just brought that game to you, so you
+      can know your chance with your crush with the same old technique of FLAMES _
+    </div>
+    <ion-button shape="round" color="light" fill="outline" style="margin-top: 1em;" *ngIf="!isFormOpened && !isResultOpened" (click)="openForm()">Hello
+      World</ion-button>
+
+    <div class="content-box" *ngIf="isFormOpened">
+      <span (click)="goTo('home')">Take Me Home</span>
+      <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" [formGroup]="crushForm" (ngSubmit)="submitForm()">
+        <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter name of your crush">
+          <input class="input100" type="text" formControlName="crush" placeholder="Your crush's name">
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Please enter your name">
+          <input class="input100" type="text" formControlName="perName" placeholder="Your name">
+          <span class="focus-input100"></span>
+        </div>
+        <div class="container-login100-form-btn">
+          <ion-button shape="round" color="danger" fill="outline" style="margin-top: 1em;" (click)="submitForm()">Che</ion-button>
+        </div>
+      </form>
+    </div>
+
+    <div class="lds-grid" *ngIf="isBigLoading && !isResultOpened && !isFormOpened">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="content-box" *ngIf="!isBigLoading && isResultOpened && !isFormOpened">
+      <span (click)="goTo('form')">Take Me Back To Form</span>
+      <div class="result-box">
+        <p class="result-names">{{crushName}} x {{myName}}</p>
+        <h3>{{flameName}}</h3>
+        <p class="result-description">{{flameDescription}}</p>
+      </div>
+    </div>
+
+
+  </div>
 </ion-content>
